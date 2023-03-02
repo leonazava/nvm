@@ -54,7 +54,7 @@ function Calculator(props: any) {
     formData.append("approx_tonnage", state.Approx_tonnage);
     formData.append("avg_depth", state.Avg_depth);
     const res = await axios.post(
-      "http://ec2-44-193-203-123.compute-1.amazonaws.com:8080/",
+      "http://ec2-44-193-203-123.compute-1.amazonaws.com:443/",
       formData
     );
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
