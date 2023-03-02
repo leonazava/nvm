@@ -5,14 +5,15 @@ import "./result.css";
 
 export default function Result(props: any) {
   const navigate = useNavigate();
-  useEffect(() => {
-    if (!props.data.outputs) {
-      navigate("/");
-    }
-  }, [props.data]);
+
   if (!props.data.outputs) {
-    return <Link to="/">wooo</Link>;
+    navigate("/");
+    return;
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   function renderMeasurement(val: string) {
     if (val === "g/t") {
@@ -58,7 +59,7 @@ export default function Result(props: any) {
         </div>
       </div>
       <div className="outputs wrapper">
-        <h1>CALCULATION RESULT</h1>
+        <h1>ESTIMATED PROJECT VALUE</h1>
         <div className="container">
           <div className="primary">
             <div id="NPV">

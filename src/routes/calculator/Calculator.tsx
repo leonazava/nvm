@@ -215,7 +215,11 @@ function AvgDepositDepth(props) {
 
 function Questionnaire(props) {
   const [questions, setQuestions] = useState([
-    { body: "Is the average dip angle 60° or greater?", answer: null },
+    {
+      body: "Is the average dip angle 60° or greater?",
+      answer: null,
+      warning: "",
+    },
     { body: "Is deposit within 10 meters of the surface?", answer: null },
   ]);
 

@@ -76,7 +76,7 @@ h4.label + .InputWrapper {
 }
 
 .dropdown.active li:hover {
-  background-color: rgb(190, 190, 190);
+  background-color: rgb(245, 245, 245);
 }
 
 .dropdown p.faint {
