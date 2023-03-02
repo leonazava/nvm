@@ -31,7 +31,7 @@ export default function Result(props: any) {
               <h2>{el.Commodity}</h2>
               <div className="parameters">
                 <p>In-situ grade - {el.Grade}</p>
-                <p>Recovery rate - {el.Recovery * 100}%</p>
+                <p>Recovery rate - {Math.ceil(el.Recovery * 100)}%</p>
               </div>
             </div>
           ))}
@@ -67,7 +67,12 @@ export default function Result(props: any) {
             </div>
             <div id="IRR">
               <h3>IRR</h3>
-              <h1>{Math.ceil(props.data.outputs.IRR * 100)}%</h1>
+              <h1>
+                {props.data.outputs.NPV < 0
+                  ? 0
+                  : Math.ceil(props.data.outputs.IRR * 100)}
+                %
+              </h1>
             </div>
           </div>
           <div className="secondary">
