@@ -56,6 +56,7 @@
 .Calculator__form.wrapper .actionButtons .errorContainer p {
   color: #ff6060;
 }
+
 .Calculator__form.wrapper .actionButtons button {
   height: 48px;
   display: flex;

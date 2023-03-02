@@ -62,11 +62,21 @@ h4.label + .InputWrapper {
 .dropdown.active ul {
   height: auto;
   border: 1px solid #eff0f0;
-  padding: 0.75rem;
 }
 
 .dropdown.active li {
-  margin-top: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  min-width: 100%;
+  transition: 0.2s background-color ease-in-out;
+}
+
+.dropdown.active li {
+  padding: 0.75rem;
+  min-width: 100%;
+}
+
+.dropdown.active li:hover {
+  background-color: rgb(190, 190, 190);
 }
 
 .dropdown p.faint {
