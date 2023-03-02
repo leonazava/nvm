@@ -1,27 +1,16 @@
-## Build
-# Use the official Go image for the development stage
-FROM golang:latest as development
-
-# Set the working directory
+# Stage 1: Build
+FROM node:alpine as build
 WORKDIR /app
-
-# Copy the Go source code
+COPY package.json .
+RUN npm install
 COPY . .
+RUN npm run build
 
-# Install dependencies
-RUN go get -d -v ./...
-
-# Build the Go server
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
-
-# Use the official Alpine image for the production stage
-FROM alpine:latest as production
-
-# Set the working directory
-WORKDIR /root/
-
-# Copy the binary from the development stage
-COPY --from=development /app/main .
-
-# Run the binary
-CMD ["./main"]
+#  Stage 2: Serve
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+# COPY nginx.conf /etc/nginx/conf.d
+COPY nginx.conf /etc/nginx/nginx.conf
+EXPOSE 81
+CMD ["nginx", "-g", "daemon off;"]

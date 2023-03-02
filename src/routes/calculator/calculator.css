@@ -1,0 +1,191 @@
+.Calculator {
+  margin-top: 40px;
+  color: black;
+  display: flex;
+  gap: 40px;
+}
+
+.Calculator article {
+  max-width: 460px;
+}
+
+.Calculator article h1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.Calculator article h1 span {
+  background-color: rgba(199, 221, 210, 0.5);
+  padding: 0 0.4rem;
+}
+
+.Calculator article p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 160%;
+  /* or 32px */
+  letter-spacing: 2px;
+  color: #1c3326;
+}
+
+.Calculator article h1 + p {
+  margin-top: 32px;
+}
+
+.Calculator article p + p {
+  margin-top: 32px;
+}
+
+.Calculator__form {
+  flex: 1;
+}
+
+.Calculator__form.wrapper {
+  padding: 12px;
+  background-color: rgba(199, 221, 210, 1);
+}
+
+.Calculator__form.wrapper .actionButtons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 24px 12px;
+}
+
+.Calculator__form.wrapper .actionButtons .errorContainer p {
+  color: #ff6060;
+}
+.Calculator__form.wrapper .actionButtons button {
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  max-width: 210px;
+  cursor: pointer;
+  padding: 12px 24px;
+  border: none;
+  background-color: #1c3326;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  place-items: center;
+}
+
+.Calculator__form.container {
+  padding: 24px;
+  background-color: white;
+}
+
+.Calculator__form.container > *:not(h2) {
+  margin-top: 24px;
+}
+
+.Calculator__form h2 {
+  max-width: 520px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Calculator__form.MetalTypes {
+  margin-top: 24px;
+}
+
+.Calculator__form > h3 {
+  color: #6f7246;
+}
+
+.Calculator__form h3 span {
+  font-size: 12px;
+  color: #909592;
+  font-weight: 500;
+}
+
+.Calculator__form h3 + * {
+  margin-top: 8px;
+}
+
+.metal.container {
+  position: relative;
+  background-color: rgba(229, 231, 236, 0.4);
+  padding: 16px;
+}
+
+.metal.container img {
+  cursor: pointer;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.metal.container + .metal.container {
+  margin-top: 1rem;
+}
+
+.metal.inputsRow {
+  display: flex;
+  gap: 12px;
+}
+
+.MetalTypes .AddMoreBtn {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  margin-top: 0.75rem;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--darkgreen);
+  background: rgba(199, 221, 210, 0.2);
+  border: 1px dashed rgba(28, 51, 38, 0.5);
+}
+
+@media only screen and (max-width: 1280px) {
+  .Calculator {
+    flex-wrap: wrap;
+  }
+  .Calculator article {
+    flex: 1;
+    min-width: 100%;
+    text-align: center;
+  }
+  .metal.inputsRow {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Calculator {
+    margin-top: 1rem;
+  }
+
+  .Calculator__form h2 {
+    font-size: 1rem;
+  }
+
+  .actionButtons {
+    margin: 1rem !important;
+  }
+
+  .Calculator article {
+    display: none;
+  }
+
+  .actionButtons {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .actionButtons > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .actionButtons > * {
+    min-width: 100%;
+  }
+}

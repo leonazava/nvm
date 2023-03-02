@@ -1,0 +1,153 @@
+footer {
+  margin-top: 8rem;
+}
+
+footer .row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer .row:first-child {
+  height: 88px;
+  border-top: 1px solid #d4d4d3;
+  border-bottom: 1px solid #d4d4d3;
+}
+
+#logo {
+  width: 233px;
+  height: 32px;
+  background-image: url("/Novamera-dark.svg");
+}
+
+footer .row:first-child > *:not(:first-child) {
+  min-height: 100%;
+  min-width: 88px;
+  display: flex;
+  justify-content: center;
+}
+
+footer .row:first-child > * + * {
+  border-left: 1px solid #d4d4d3;
+}
+
+footer .row > * {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1c3326;
+}
+
+footer .row a {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+  color: #1c3326;
+}
+
+footer .row > *:first-child {
+  flex: 1;
+}
+
+footer .row:not(:first-child) {
+  padding: 1.5rem 0;
+}
+
+footer .row:nth-child(2) {
+  justify-content: space-between;
+}
+
+footer .row article {
+  max-width: 60ch;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 160%;
+}
+
+footer .row:last-child {
+  justify-content: center;
+  padding: 24px 0 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  color: #1c3326;
+}
+
+#logo {
+  order: 1;
+}
+#email {
+  order: 2;
+}
+#phone {
+  order: 3;
+}
+#twitter {
+  order: 4;
+}
+#linkedin {
+  order: 5;
+}
+
+@media only screen and (max-width: 1280px) {
+  footer {
+    margin-top: 4rem;
+  }
+  footer * {
+    font-size: 14px !important;
+  }
+
+  footer .row:first-child {
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  footer .row:first-child > * {
+    min-width: 64px;
+  }
+
+  footer .row > * {
+    height: 64px;
+    padding: 1rem;
+  }
+
+  footer article {
+    max-width: none;
+    min-width: 100%;
+  }
+
+  #logo {
+    background-image: url("/Novamera-dark-mobile.svg");
+    width: 150px;
+    height: 21px;
+  }
+
+  #logo {
+    order: 1;
+  }
+  #email {
+    justify-content: flex-start;
+    border-top: 1px solid #d4d4d3;
+    border-left: none;
+    order: 4;
+    width: 100%;
+  }
+  #phone {
+    justify-content: flex-start;
+    border-top: 1px solid #d4d4d3;
+    border-left: none;
+    width: 100%;
+    order: 5;
+  }
+  #twitter {
+    order: 2;
+  }
+  #linkedin {
+    order: 3;
+  }
+}

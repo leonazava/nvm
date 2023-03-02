@@ -1,0 +1,356 @@
+.Result {
+  margin-top: 40px;
+  color: black;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.inputs {
+  min-width: 35%;
+}
+
+.inputs > h1 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  text-transform: uppercase;
+  color: #1c3326;
+}
+
+.inputs .wrapper {
+  margin-top: 20px;
+  border: 1px solid #d4d4d3;
+}
+
+.inputs .wrapper > * {
+  padding: 12px 16px;
+}
+
+.inputs .wrapper > *:not(:first-child) {
+  border-top: 1px solid #d4d4d3;
+}
+
+.inputs .parameters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.inputs .parameters p {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  color: #1c3326;
+}
+
+.inputs .primary h2 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 140%;
+  color: #1c3326;
+}
+
+.inputs .secondary h2 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+  color: #1c3326;
+  opacity: 0.6;
+}
+
+.outputs.wrapper {
+  position: relative;
+  padding: 12px;
+  background-color: rgba(199, 221, 210, 1);
+  flex: 1;
+}
+
+.outputs.wrapper > h1 {
+  text-align: center;
+  padding: 12px 12px 24px 12px;
+}
+
+.outputs.wrapper > p {
+  position: absolute;
+  left: 0;
+  bottom: -2rem;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  color: #1c3326;
+  opacity: 0.6;
+}
+
+.outputs .container {
+  padding: 24px;
+  background-color: white;
+}
+
+.outputs .container > * + * {
+  margin-top: 1rem;
+}
+
+.outputs .primary {
+  padding: 20px;
+  display: flex;
+  background-color: rgba(229, 231, 236, 0.4);
+  gap: 1rem;
+}
+
+.outputs .primary > * {
+  flex: 1;
+}
+
+.outputs .primary h1 {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 140%;
+  color: #1c3326;
+}
+
+.outputs .primary h3 {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color: #1c3326;
+  opacity: 0.6;
+}
+
+.outputs .secondary {
+  width: 100%;
+  border: 1px solid #d4d4d3;
+  display: flex;
+}
+
+.outputs .secondary > *:not(:first-child) {
+  border-left: 1px solid #d4d4d3;
+}
+
+.outputs .secondary > * {
+  flex: 1;
+  padding: 0.75rem;
+}
+
+.outputs .secondary h3 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  color: #1c3326;
+}
+.outputs .secondary p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+  color: #1c3326;
+  opacity: 0.6;
+  margin-top: 4px;
+}
+.outputs .secondary h2 {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 140%;
+  color: #1c3326;
+  margin-top: 8px;
+}
+
+.tertiary > * {
+  display: flex;
+}
+
+.tertiary > * + * {
+  margin-top: 1rem;
+}
+
+.tertiary h2:first-child {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1;
+  color: #1c3326;
+  opacity: 0.6;
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.tertiary .buffer {
+  flex: 1;
+  margin: 0 0.5rem;
+  border-bottom: 1px dashed #d1d2d5;
+  margin-bottom: 0.2rem;
+}
+
+.tertiary h2:last-child {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1;
+  color: #1c3326;
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+.divider {
+  margin-top: 1.5rem !important;
+  height: 1px;
+  background-color: #d1d2d4;
+}
+
+.final {
+  display: flex;
+}
+
+.final > * {
+  width: 25%;
+}
+
+.final h3 {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  /* identical to box height, or 17px */
+
+  color: #1c3326;
+
+  opacity: 0.6;
+}
+
+.final p {
+  margin-top: 4px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  /* or 22px */
+
+  color: #1c3326;
+}
+
+.buttons {
+  margin-top: 1.5rem !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons > * {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.75rem;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.buttons > *:first-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 48px;
+  left: 726px;
+  top: 725px;
+
+  border: 1px solid #1c3326;
+}
+
+.buttons > *:last-child {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  width: 309px;
+  height: 48px;
+  left: 1055px;
+  top: 725px;
+  background: #1c3326;
+}
+
+@media only screen and (max-width: 1024px) {
+  .inputs {
+    min-width: none;
+  }
+
+  .inputs.container > h1 {
+    font-size: 18px;
+  }
+
+  .inputs .primary h2 {
+    font-size: 16px;
+  }
+
+  .inputs .secondary h2 {
+    font-size: 12px;
+  }
+
+  .inputs p {
+    font-size: 16px !important;
+  }
+
+  .outputs.wrapper > h1 {
+    font-size: 18px;
+  }
+
+  .outputs .primary h3 {
+    font-size: 12px;
+  }
+
+  .outputs .primary h1 {
+    font-size: 21px;
+  }
+
+  .outputs .secondary p {
+    font-size: 12px;
+  }
+
+  .outputs .secondary h2 {
+    font-size: 18px;
+  }
+
+  .final {
+    flex-wrap: wrap;
+    margin: 0 !important;
+  }
+
+  .final > * {
+    margin-top: 1rem;
+    min-width: 50%;
+  }
+
+  .buttons {
+    flex-wrap: wrap;
+  }
+
+  .buttons > * {
+    width: auto !important;
+    width: 100% !important;
+  }
+
+  .buttons > * + * {
+    margin-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .Result {
+    margin-top: 1rem;
+  }
+
+  .outputs .secondary h2 {
+    margin-top: 4px;
+  }
+
+  .inputs {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .outputs .secondary {
+    flex-direction: column;
+  }
+
+  .outputs .secondary > *:not(:first-child) {
+    border-left: none;
+    border-top: 1px solid #d4d4d3;
+  }
+}

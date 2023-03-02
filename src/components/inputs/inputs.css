@@ -1,0 +1,127 @@
+.InputContainer {
+  flex: 1;
+}
+
+.InputWrapper {
+  height: 44px;
+  width: 100%;
+}
+
+.InputWrapper > * {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
+input:not([type="range"]),
+.dropdown {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0;
+  border: 1px solid #eff0f0;
+  color: var(--darkgreen);
+}
+
+h4.label {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+h4.label + .InputWrapper {
+  margin-top: 4px;
+}
+
+.dropdown {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown img {
+  user-select: none;
+  width: 14px;
+  height: 14px;
+}
+
+.dropdown ul {
+  z-index: 1000;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  width: 100%;
+  background-color: white;
+  transition: 0.3s height ease-in-out;
+}
+
+.dropdown.active ul {
+  height: auto;
+  border: 1px solid #eff0f0;
+  padding: 0.75rem;
+}
+
+.dropdown.active li {
+  margin-top: 0.75rem;
+}
+
+.dropdown p.faint {
+  color: #909592;
+}
+
+.Yesno {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Yesno .answers {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--darkgreen);
+  margin-top: 0;
+}
+
+.Yesno .answers > * {
+  cursor: pointer;
+  border: 1px solid var(--darkgreen);
+  padding: 7px 24px;
+}
+
+.Yesno .selected {
+  background-color: #1c3326;
+  color: white;
+}
+
+.Yesno + .Yesno {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .InputContainer {
+    min-width: 100%;
+  }
+  .InputContainer.Slider {
+    flex: 1;
+  }
+  .Yesno {
+    flex-wrap: wrap;
+  }
+  .Yesno > * {
+    width: 100%;
+  }
+
+  .Yesno .answers {
+    margin-top: 0.5rem;
+  }
+  .Yesno .answers > * {
+    flex: 1;
+    text-align: center;
+  }
+}

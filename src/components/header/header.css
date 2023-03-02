@@ -1,0 +1,38 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  width: 232px;
+  height: 32px;
+  background-image: url("/Novamera-logo.svg");
+}
+
+header button {
+  cursor: pointer;
+  padding: 12px 24px;
+  border: none;
+  background-color: #1c3326;
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  place-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 0 1rem;
+  }
+  header .logo {
+    width: 150px;
+    height: 21px;
+    background-image: url("/Novamera-logo-mobile.svg");
+  }
+  header button {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+}
