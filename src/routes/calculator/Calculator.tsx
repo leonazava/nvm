@@ -26,6 +26,10 @@ function Calculator(props: any) {
     Questions: [],
   };
 
+  useEffect(() => {
+    props.setData({ inputs: "", outputs: "" });
+  }, []);
+
   const [state, setState] = useState(inputs);
   const [err, setErr] = useState<null | string>(null);
 

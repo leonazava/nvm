@@ -21,7 +21,7 @@ export default function Result(props: any) {
       return "lb";
     }
   }
-  if (!props.data.inputs) return navigate("/");
+
   return (
     <div className="Result">
       <div className="inputs container">
@@ -130,9 +130,7 @@ export default function Result(props: any) {
             </div>
           </div>
           <div className="buttons">
-            <div onClick={() => props.setData({ inputs: "", outputs: "" })}>
-              RECALCULATE
-            </div>
+            <div onClick={() => navigate("/")}>RECALCULATE</div>
 
             <a
               href="https://share.hsforms.com/1mBU_AdFFSvWxOwO3hI42Swd1kfb"
