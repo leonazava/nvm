@@ -5,12 +5,15 @@ function Freetext(props: any) {
     <div className="InputContainer">
       {props.label && <h4 className="label">{props.label}</h4>}
       <div className="InputWrapper">
+        {props.decoration && (
+          <div className="decoration">({props.decoration})</div>
+        )}
         <input
-          type="number"
+          type="text"
           placeholder={props.placeholder}
           value={props.displayValue}
           onChange={(e) =>
-            e.target.value !== "0" && props.change(parseFloat(e.target.value))
+            e.target.value !== "0" && props.change(e.target.value)
           }
         />
       </div>

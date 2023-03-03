@@ -3,8 +3,15 @@
 }
 
 .InputWrapper {
+  position: relative;
   height: 44px;
   width: 100%;
+}
+
+.InputWrapper .decoration {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
 }
 
 .InputWrapper > * {
@@ -115,24 +122,24 @@ h4.label + .InputWrapper {
   margin-top: 20px;
 }
 
-.Yesno .warningContainer {
+.warningContainer {
   width: 100%;
   margin-top: 0.5rem;
 }
 
-.Yesno .warningContainer p {
+.warningContainer p {
   font-weight: 500;
   font-size: 12px;
   line-height: 140%;
   color: #909592;
 }
 
-.Yesno .warningContainer h4 {
+.warningContainer h4 {
   font-size: 16px;
   font-weight: 500;
 }
 
-.Yesno .warningContainer input {
+.warningContainer input {
   margin-top: 8px;
 }
 
@@ -157,4 +164,16 @@ h4.label + .InputWrapper {
     flex: 1;
     text-align: center;
   }
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

@@ -6,9 +6,9 @@ import Slider from "../../components/inputs/Slider";
 export default function Metals(props: any) {
   const reset = {
     Commodity: "",
-    Grade: 0,
+    Grade: "",
     Recovery: 0,
-    Price: 0,
+    Price: "",
     Measurement: "",
     key: Math.random(),
   };
@@ -20,29 +20,36 @@ export default function Metals(props: any) {
     {
       label: "Gold",
       value: "Gold",
-      price: 1800.0,
+      price: "1800.00",
       measurement: "g/t",
     },
     {
       label: "Silver",
       value: "Silver",
-      price: 22.0,
+      price: "22.00",
       measurement: "g/t",
     },
-    { label: "Lead", value: "Lead", price: 1.1, measurement: "%" },
-    { label: "Zinc", value: "Zinc", price: 1.4, measurement: "%" },
-    { label: "Copper", value: "Copper", price: 4.0, measurement: "%" },
-    { label: "Nickel", value: "Nickel", price: 12.0, measurement: "%" },
-    { label: "Platinum", value: "Platinum", price: 1100.0, measurement: "g/t" },
+    { label: "Lead", value: "Lead", price: "1.10", measurement: "%" },
+    { label: "Zinc", value: "Zinc", price: "1.40", measurement: "%" },
+    { label: "Copper", value: "Copper", price: "4.00", measurement: "%" },
+    { label: "Nickel", value: "Nickel", price: "12.00", measurement: "%" },
+    {
+      label: "Platinum",
+      value: "Platinum",
+      price: "1100.00",
+      measurement: "g/t",
+    },
     {
       label: "Palladium",
       value: "Palladium",
-      price: 2500.0,
+      price: "2500.00",
       measurement: "g/t",
     },
   ];
 
-  useEffect(() => props.update([...metals]), [metals]);
+  useEffect(() => {
+    props.update([...metals]);
+  }, [metals]);
 
   function renderOptions() {
     let arr = [...options];
@@ -119,9 +126,10 @@ export default function Metals(props: any) {
                 placeholder="e.g. 5.00"
                 displayValue={metal.Grade || ""}
                 change={handleChange(i, "Grade")}
+                decoration={metal.Measurement || ""}
               />
               <Slider
-                label="Recovery rate:"
+                label="Mill recovery rate:"
                 displayValue={Math.floor(metal.Recovery * 100)}
                 change={handleChange(i, "Recovery")}
               />

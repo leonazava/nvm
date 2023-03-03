@@ -12,16 +12,17 @@ function Calculator(props: any) {
     Metals: [
       {
         Commodity: "",
-        Grade: 0,
+        Grade: "",
         Recovery: 0,
-        Price: 0,
+        Price: "",
         Measurement: "",
-        key: Math.random(),
       },
     ],
     Vein_width: "",
     Approx_tonnage: "",
     Avg_depth: "",
+    Sixty_deg: null,
+    Start_depth: null,
     Questions: [],
   };
 
@@ -44,17 +45,29 @@ function Calculator(props: any) {
       return;
     }
     const formData = new FormData();
-    const Metals = JSON.parse(JSON.stringify(state.Metals));
-    Metals.map((el) => delete el.key);
-    formData.append("metals", JSON.stringify(Metals));
+    const metalsObj = JSON.parse(JSON.stringify(state.Metals));
+    metalsObj.map((el, i) => {
+      delete el.key;
+      metalsObj[i].Price = parseFloat(el.Price);
+      metalsObj[i].Grade = parseFloat(el.Grade);
+    });
+    formData.append("metals", JSON.stringify(metalsObj));
     formData.append("vein_width", state.Vein_width);
     formData.append("approx_tonnage", state.Approx_tonnage);
     formData.append("avg_depth", state.Avg_depth);
-    const res = await axios.post(
-      "https://novamera.fruitfulsource.com//",
-      formData
-    );
+    // // const res = await axios.post(
+    // //   "https://novamera.fruitfulsource.com/",
+    // //   formData
+    // // );
+    const res = await axios.post("http://localhost:8080/", formData);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
+  }
+
+  function renderStartDepthDisplayValue() {
+    if (state.Start_depth === null) return null;
+    if (state.Start_depth === false) return false;
+    if (state.Start_depth === true) return true;
+    if (typeof state.Start_depth === "string") return false;
   }
 
   useEffect(() => {
@@ -85,7 +98,28 @@ function Calculator(props: any) {
           <VeinWidth update={updateInputs("Vein_width")} />
           <ApproximateTonnage update={updateInputs("Approx_tonnage")} />
           <AvgDepositDepth update={updateInputs("Avg_depth")} />
-          <Questionnaire update={updateInputs("Questions")} />
+          <Yesno
+            question="Is the average dip angle 60° or greater?"
+            change={updateInputs("Sixty_deg")}
+            displayValue={state.Sixty_deg}
+          />
+          {state.Sixty_deg === false && (
+            <div className="warningContainer">
+              <p>
+                Surgical mining provides ideal returns for deposits over 60
+                degrees. Get in touch to discuss your situation.
+              </p>
+            </div>
+          )}
+          <Yesno
+            question="Is deposit within 10 meters of the surface?"
+            change={updateInputs("Start_depth")}
+            displayValue={renderStartDepthDisplayValue()}
+          />
+          <StartingDepth
+            depth={state.Start_depth}
+            update={updateInputs("Start_depth")}
+          />
         </div>
         <div className="actionButtons">
           <div className="errorContainer">
@@ -212,94 +246,25 @@ function AvgDepositDepth(props) {
   );
 }
 
-function Questionnaire(props) {
-  const [qs, setQs] = useState([
-    {
-      body: "Is the average dip angle 60° or greater?",
-      answer: null,
-      warning:
-        "Surgical mining provides ideal returns for deposits over 60 degrees. Get in touch to discuss your situation.",
-      input_prompt: false,
-    },
-    {
-      body: "Is deposit within 10 meters of the surface?",
-      answer: null,
-      warning: "What is the depth? (meters)",
-      depth: "",
-    },
-  ]);
-
-  useEffect(() => props.update([...qs]), [qs]);
-
-  function handleChange(i: number) {
-    const arr = [...qs];
-    return (val: string) => {
-      arr[i].answer = val;
-      setQs(arr);
+function StartingDepth(props) {
+  function handleChange() {
+    return (val: any) => {
+      props.update(parseFloat(val));
     };
   }
 
-  function handleDepthWarningChange(i: number, field: string) {
-    const arr = [...qs];
-    return (val: string) => {
-      arr[1][field] = val;
-      setQs(arr);
-    };
+  if (props.depth === false || typeof props.depth === "number") {
+    return (
+      <div className="warningContainer">
+        <Freetext
+          label="If no, at what depth does it start? (meters)"
+          displayValue={props.depth || ""}
+          placeholder="e.g. 15"
+          change={handleChange()}
+        />
+      </div>
+    );
   }
-
-  return (
-    <div className="Calculator__form questionnaire">
-      <div className="Yesno">
-        <h3>{qs[0].body}</h3>
-        <div className="answers">
-          <div
-            onClick={() => handleChange(0)("Yes")}
-            className={qs[0].answer === "Yes" ? "selected" : ""}
-          >
-            YES
-          </div>
-          <div
-            onClick={() => handleChange(0)("No")}
-            className={qs[0].answer === "No" ? "selected" : ""}
-          >
-            NO
-          </div>
-        </div>
-        {qs[0].answer === "No" && (
-          <div className="warningContainer">
-            <p>{qs[0].warning}</p>
-          </div>
-        )}
-      </div>
-      <div className="Yesno">
-        <h3>{qs[1].body}</h3>
-        <div className="answers">
-          <div
-            onClick={() => handleChange(1)("Yes")}
-            className={qs[1].answer === "Yes" ? "selected" : ""}
-          >
-            YES
-          </div>
-          <div
-            onClick={() => handleChange(1)("No")}
-            className={qs[1].answer === "No" ? "selected" : ""}
-          >
-            NO
-          </div>
-        </div>
-        {qs[1].answer === "No" && (
-          <div className="warningContainer">
-            <Freetext
-              label={qs[1].warning}
-              displayValue={qs[1].depth || ""}
-              placeholder="15"
-              change={handleDepthWarningChange(1, "depth")}
-            />
-          </div>
-        )}
-      </div>
-    </div>
-  );
 }
 
 function handleValidation(obj: any): () => string | null {
