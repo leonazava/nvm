@@ -21,7 +21,7 @@ export default function Result(props: any) {
       return "lb";
     }
   }
-  if (!props.data.inputs) return <h1>hello world</h1>;
+  if (!props.data.inputs) return navigate("/");
   return (
     <div className="Result">
       <div className="inputs container">
