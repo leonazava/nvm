@@ -225,6 +225,7 @@ function Questionnaire(props) {
       body: "Is deposit within 10 meters of the surface?",
       answer: null,
       warning: "What is the depth? (meters)",
+      depth: "",
     },
   ]);
 
