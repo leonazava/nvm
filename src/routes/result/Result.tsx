@@ -79,12 +79,11 @@ export default function Result(props: any) {
           <div className="secondary">
             {props.data.inputs.Metals.map((metal, i) => (
               <div key={Math.random()} className={`metal_${i}`}>
-                <h3>
-                  {metal.Commodity} ({renderMeasurement(metal.Measurement)})
-                </h3>
+                <h3>{metal.Commodity}</h3>
                 <p>Price: ${metal.Price}</p>
                 <h2>
-                  {Math.ceil(props.data.outputs.Metals[i]).toLocaleString()}
+                  {Math.ceil(props.data.outputs.Metals[i]).toLocaleString()}{" "}
+                  {renderMeasurement(metal.Measurement)}
                 </h2>
               </div>
             ))}
