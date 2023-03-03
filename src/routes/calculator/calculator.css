@@ -1,8 +1,16 @@
 .Calculator {
+  position: relative;
   margin-top: 40px;
   color: black;
   display: flex;
   gap: 40px;
+}
+
+.Calculator img.vector {
+  position: absolute;
+  z-index: -1000;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .Calculator article {
@@ -47,10 +55,19 @@
 }
 
 .Calculator__form.wrapper .actionButtons {
-  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
   justify-content: space-between;
   align-items: center;
   margin: 24px 24px 12px;
+}
+
+.actionButtons > * {
+  min-width: 100%;
+}
+
+.actionButtons > * + * {
+  margin-top: 0.5rem;
 }
 
 .Calculator__form.wrapper .actionButtons .errorContainer p {
@@ -175,15 +192,6 @@
 
   .Calculator article {
     display: none;
-  }
-
-  .actionButtons {
-    flex-wrap: wrap;
-    text-align: center;
-  }
-
-  .actionButtons > * + * {
-    margin-top: 0.5rem;
   }
 
   .actionButtons > * {

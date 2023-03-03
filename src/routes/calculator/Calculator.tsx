@@ -5,6 +5,7 @@ import Metals from "./Metals";
 import Dropdown from "../../components/inputs/Dropdown";
 import Yesno from "../../components/inputs/Yesno";
 import "./calculator.css";
+import Freetext from "../../components/inputs/Freetext";
 
 function Calculator(props: any) {
   const inputs = {
@@ -26,10 +27,6 @@ function Calculator(props: any) {
 
   const [state, setState] = useState(inputs);
   const [err, setErr] = useState<null | string>(null);
-
-  // useEffect(() => {
-  //   props.setData({ inputs: null, outputs: null });
-  // }, []);
 
   function updateInputs(key: string) {
     const obj = { ...state };
@@ -97,6 +94,8 @@ function Calculator(props: any) {
           <button onClick={handleSubmit}>CALCULATE NOW</button>
         </div>
       </div>
+
+      <img className="vector" src="https://i.imgur.com/uIw1hG8.png" />
     </div>
   );
 }
@@ -214,33 +213,90 @@ function AvgDepositDepth(props) {
 }
 
 function Questionnaire(props) {
-  const [questions, setQuestions] = useState([
+  const [qs, setQs] = useState([
     {
       body: "Is the average dip angle 60° or greater?",
       answer: null,
-      warning: "",
+      warning:
+        "Surgical mining provides ideal returns for deposits over 60 degrees. Get in touch to discuss your situation.",
+      input_prompt: false,
     },
-    { body: "Is deposit within 10 meters of the surface?", answer: null },
+    {
+      body: "Is deposit within 10 meters of the surface?",
+      answer: null,
+      warning: "What is the depth? (meters)",
+    },
   ]);
 
-  useEffect(() => props.update([...questions]), [questions]);
+  useEffect(() => props.update([...qs]), [qs]);
 
   function handleChange(i: number) {
-    const arr = [...questions];
-    return (val: boolean) => {
+    const arr = [...qs];
+    return (val: string) => {
       arr[i].answer = val;
-      setQuestions(arr);
+      setQs(arr);
+    };
+  }
+
+  function handleDepthWarningChange(i: number, field: string) {
+    const arr = [...qs];
+    return (val: string) => {
+      arr[1][field] = val;
+      setQs(arr);
     };
   }
 
   return (
     <div className="Calculator__form questionnaire">
-      {questions.map((q, i) => {
-        const change = handleChange(i);
-        return (
-          <Yesno key={i} question={q.body} answer={q.answer} change={change} />
-        );
-      })}
+      <div className="Yesno">
+        <h3>{qs[0].body}</h3>
+        <div className="answers">
+          <div
+            onClick={() => handleChange(0)("Yes")}
+            className={qs[0].answer === "Yes" ? "selected" : ""}
+          >
+            YES
+          </div>
+          <div
+            onClick={() => handleChange(0)("No")}
+            className={qs[0].answer === "No" ? "selected" : ""}
+          >
+            NO
+          </div>
+        </div>
+        {qs[0].answer === "No" && (
+          <div className="warningContainer">
+            <p>{qs[0].warning}</p>
+          </div>
+        )}
+      </div>
+      <div className="Yesno">
+        <h3>{qs[1].body}</h3>
+        <div className="answers">
+          <div
+            onClick={() => handleChange(1)("Yes")}
+            className={qs[1].answer === "Yes" ? "selected" : ""}
+          >
+            YES
+          </div>
+          <div
+            onClick={() => handleChange(1)("No")}
+            className={qs[1].answer === "No" ? "selected" : ""}
+          >
+            NO
+          </div>
+        </div>
+        {qs[1].answer === "No" && (
+          <div className="warningContainer">
+            <Freetext
+              label={qs[1].warning}
+              displayValue={qs[1].depth || ""}
+              placeholder="15"
+              change={handleDepthWarningChange(1, "depth")}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

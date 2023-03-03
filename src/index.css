@@ -83,6 +83,9 @@ textarea {
 }
 
 @media only screen and (max-width: 768px) {
+  img.vector {
+    display: none;
+  }
   #root {
     padding: 2rem 0;
   }

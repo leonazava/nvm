@@ -7,7 +7,7 @@ function Freetext(props: any) {
       <div className="InputWrapper">
         <input
           type="number"
-          placeholder="e.g. 5.00"
+          placeholder={props.placeholder}
           value={props.displayValue}
           onChange={(e) =>
             e.target.value !== "0" && props.change(parseFloat(e.target.value))

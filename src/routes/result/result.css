@@ -1,9 +1,17 @@
 .Result {
+  position: relative;
   margin-top: 40px;
   color: black;
   display: flex;
   align-items: flex-start;
   gap: 40px;
+}
+
+.Result img.vector {
+  position: absolute;
+  z-index: -1000;
+  left: 50%;
+  transform: translate(-50%, 0);
 }
 
 .inputs {

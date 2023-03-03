@@ -5,7 +5,6 @@ function Footer() {
     <footer>
       <div className="row">
         <div>
-          {/* <img src="/src/assets/Novamera-dark.svg" /> */}
           <a id="logo" href="https://novamerainc.com/" />
         </div>
         <div id="email">

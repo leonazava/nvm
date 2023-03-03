@@ -20,20 +20,20 @@ export default function Metals(props: any) {
     {
       label: "Gold",
       value: "Gold",
-      price: 1800.00,
+      price: 1800.0,
       measurement: "g/t",
     },
     {
       label: "Silver",
       value: "Silver",
-      price: 22.00,
+      price: 22.0,
       measurement: "g/t",
     },
-    { label: "Lead", value: "Lead", price: 1.10, measurement: "%" },
-    { label: "Zinc", value: "Zinc", price: 1.40, measurement: "%" },
-    { label: "Copper", value: "Copper", price: 4.00, measurement: "%" },
-    { label: "Nickel", value: "Nickel", price: 12.00, measurement: "%" },
-    { label: "Platinum", value: "Platinum", price: 1100.00, measurement: "g/t" },
+    { label: "Lead", value: "Lead", price: 1.1, measurement: "%" },
+    { label: "Zinc", value: "Zinc", price: 1.4, measurement: "%" },
+    { label: "Copper", value: "Copper", price: 4.0, measurement: "%" },
+    { label: "Nickel", value: "Nickel", price: 12.0, measurement: "%" },
+    { label: "Platinum", value: "Platinum", price: 1100.0, measurement: "g/t" },
     {
       label: "Palladium",
       value: "Palladium",
@@ -116,6 +116,7 @@ export default function Metals(props: any) {
               />
               <Freetext
                 label="In-situ grade:"
+                placeholder="e.g. 5.00"
                 displayValue={metal.Grade || ""}
                 change={handleChange(i, "Grade")}
               />

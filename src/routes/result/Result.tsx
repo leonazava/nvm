@@ -139,6 +139,7 @@ export default function Result(props: any) {
         </div>
         <p>*All amounts are in US Dollars</p>
       </div>
+      <img className="vector" src="https://i.imgur.com/uIw1hG8.png" />
     </div>
   );
 }

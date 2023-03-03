@@ -1,6 +1,10 @@
 import "./inputs.css";
 
 function Yesno(props: any) {
+  function renderWarning() {
+    if (props.input_prompt) {
+    }
+  }
   return (
     <div className="Yesno">
       <h3>{props.question}</h3>
@@ -18,6 +22,7 @@ function Yesno(props: any) {
           NO
         </div>
       </div>
+      {props.answer === "No" && <p>{props.warning}</p>}
     </div>
   );
 }
