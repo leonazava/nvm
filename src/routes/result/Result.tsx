@@ -6,12 +6,11 @@ import "./result.css";
 export default function Result(props: any) {
   const navigate = useNavigate();
 
-  if (!props.data.outputs) {
-    navigate("/");
-    return;
-  }
-
   useEffect(() => {
+    if (!props.data.inputs) {
+      navigate("/");
+      return;
+    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -22,6 +21,7 @@ export default function Result(props: any) {
       return "lb";
     }
   }
+  if (!props.data.inputs) return <h1>hello world</h1>;
   return (
     <div className="Result">
       <div className="inputs container">
@@ -105,7 +105,7 @@ export default function Result(props: any) {
               <h2>{props.data.outputs.AISC}</h2>
             </div>
             <div>
-              <h2>Estimated Life of Mine</h2>
+              <h2>Estimated Life of Mine (years)</h2>
               <div className="buffer" />
               <h2>{props.data.outputs.LOM}</h2>
             </div>
@@ -133,7 +133,13 @@ export default function Result(props: any) {
             <div onClick={() => props.setData({ inputs: "", outputs: "" })}>
               RECALCULATE
             </div>
-            <div>BOOK A MEETING</div>
+
+            <a
+              href="https://share.hsforms.com/1mBU_AdFFSvWxOwO3hI42Swd1kfb"
+              target="_blank"
+            >
+              <div>BOOK A MEETING</div>
+            </a>
           </div>
         </div>
         <p>*All amounts are in US Dollars</p>

@@ -55,11 +55,13 @@ function Calculator(props: any) {
     formData.append("vein_width", state.Vein_width);
     formData.append("approx_tonnage", state.Approx_tonnage);
     formData.append("avg_depth", state.Avg_depth);
-    // // const res = await axios.post(
-    // //   "https://novamera.fruitfulsource.com/",
-    // //   formData
-    // // );
-    const res = await axios.post("http://localhost:8080/", formData);
+    formData.append("sixty_deg", state.Sixty_deg);
+    formData.append("start_depth", state.Start_depth);
+    const res = await axios.post(
+      "https://novamera.fruitfulsource.com/",
+      formData
+    );
+    // const res = await axios.post("http://localhost:8080/", formData);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
   }
 
