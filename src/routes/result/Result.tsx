@@ -1,16 +1,8 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./result.css";
 
 export default function Result(props: any) {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    if (!props.data.inputs) {
-      navigate("/");
-      return;
-    }
     window.scrollTo(0, 0);
   }, []);
 
@@ -130,7 +122,9 @@ export default function Result(props: any) {
             </div>
           </div>
           <div className="buttons">
-            <div onClick={() => navigate("/")}>RECALCULATE</div>
+            <div onClick={() => props.setData({ inputs: "", outputs: "" })}>
+              RECALCULATE
+            </div>
 
             <a
               href="https://share.hsforms.com/1mBU_AdFFSvWxOwO3hI42Swd1kfb"

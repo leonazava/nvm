@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Metals from "./Metals";
 import Dropdown from "../../components/inputs/Dropdown";
@@ -41,7 +40,6 @@ function Calculator(props: any) {
     };
   }
 
-  const navigate = useNavigate();
   async function handleSubmit() {
     const err = handleValidation({ ...state })();
     setErr(err);
@@ -76,9 +74,9 @@ function Calculator(props: any) {
     if (typeof state.Start_depth === "string") return false;
   }
 
-  useEffect(() => {
-    props.data.outputs && navigate("/result");
-  }, [props.data]);
+  // useEffect(() => {
+  //   props.data.outputs && navigate("/result");
+  // }, [props.data]);
 
   return (
     <div className="Calculator">
