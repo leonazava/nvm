@@ -87,7 +87,7 @@ export default function Result(props: any) {
               <h2>{props.data.outputs.Tonnes_per_day}</h2>
             </div>
             <div>
-              <h2>Operating Cost per Tonne</h2>
+              <h2>Surgical Mining Cost per Tonne</h2>
               <div className="buffer" />
               <h2>{props.data.outputs.Cost_per_tonne}</h2>
             </div>

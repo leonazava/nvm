@@ -22,7 +22,6 @@ function Calculator(props: any) {
     Avg_depth: "",
     Sixty_deg: null,
     Start_depth: null,
-    Questions: [],
   };
 
   useEffect(() => {
@@ -218,7 +217,7 @@ function AvgDepositDepth(props) {
   const options = [
     { label: "100", value: "100" },
     { label: "200", value: "200" },
-    { label: "300", value: "400" },
+    { label: "300", value: "300" },
     { label: "400", value: "400" },
     { label: "500+", value: "500" },
   ];
