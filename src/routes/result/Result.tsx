@@ -29,7 +29,7 @@ export default function Result(props: any) {
             </div>
           ))}
           <div className="secondary">
-            <h2>Approximate width of vein (m)</h2>
+            <h2>Average vein width (meters)</h2>
             <div className="parameters">
               <p>{props.data.inputs.Vein_width}</p>
             </div>
@@ -43,7 +43,7 @@ export default function Result(props: any) {
             </div>
           </div>
           <div className="secondary">
-            <h2>Average depth of deposit (m)</h2>
+            <h2>Average deposit depth (meters)</h2>
             <div className="parameters">
               <p>{props.data.inputs.Avg_depth}</p>
             </div>

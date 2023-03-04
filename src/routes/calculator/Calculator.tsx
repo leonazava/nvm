@@ -29,6 +29,7 @@ function Calculator(props: any) {
   }, []);
 
   const [state, setState] = useState(inputs);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [err, setErr] = useState<null | string>(null);
 
   function updateInputs(key: string) {
@@ -40,6 +41,8 @@ function Calculator(props: any) {
   }
 
   async function handleSubmit() {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const err = handleValidation({ ...state })();
     setErr(err);
     if (err) {
@@ -63,6 +66,7 @@ function Calculator(props: any) {
       formData
     );
     // const res = await axios.post("http://localhost:8080/", formData);
+    setIsSubmitting(false);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
   }
 
@@ -72,10 +76,6 @@ function Calculator(props: any) {
     if (state.Start_depth === true) return true;
     if (typeof state.Start_depth === "string") return false;
   }
-
-  // useEffect(() => {
-  //   props.data.outputs && navigate("/result");
-  // }, [props.data]);
 
   return (
     <div className="Calculator">
@@ -164,7 +164,7 @@ function VeinWidth(props) {
 
   return (
     <div className="Calculator__form VeinWidth">
-      <h3>Approximate width of vein</h3>
+      <h3>Average vein width (meters)</h3>
       <Dropdown
         options={options}
         displayValue={renderDropdownDisplayValue()}
@@ -239,7 +239,7 @@ function AvgDepositDepth(props) {
 
   return (
     <div className="Calculator__form veinWidth">
-      <h3>Average depth of deposit</h3>
+      <h3>Average deposit depth (meters)</h3>
       <Dropdown
         options={options}
         displayValue={renderDropdownDisplayValue()}
