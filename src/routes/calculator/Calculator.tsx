@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Metals from "./Metals";
 import Dropdown from "../../components/inputs/Dropdown";
@@ -22,15 +22,13 @@ function Calculator(props: any) {
     Avg_depth: "",
     Sixty_deg: null,
     Start_depth: null,
-    Questions: [],
   };
 
-  useEffect(() => {
-    props.setData({ inputs: "", outputs: "" });
-  }, []);
-
   const [state, setState] = useState(inputs);
+  const [submitEvent, setSubmitEvent] = useState(null);
   const [err, setErr] = useState<null | string>(null);
+
+  useEffect(() => setSubmitEvent(new Event("customSubmit")), []);
 
   function updateInputs(key: string) {
     const obj = { ...state };
@@ -42,6 +40,7 @@ function Calculator(props: any) {
 
   async function handleSubmit() {
     const err = handleValidation({ ...state })();
+    document.dispatchEvent(submitEvent);
     setErr(err);
     if (err) {
       return;
@@ -73,10 +72,6 @@ function Calculator(props: any) {
     if (state.Start_depth === true) return true;
     if (typeof state.Start_depth === "string") return false;
   }
-
-  // useEffect(() => {
-  //   props.data.outputs && navigate("/result");
-  // }, [props.data]);
 
   return (
     <div className="Calculator">
@@ -274,28 +269,27 @@ function StartingDepth(props) {
 function handleValidation(obj: any): () => string | null {
   const errMsg = "Some fields were left empty";
   return () => {
-    let err: string | null = null;
     obj.Metals.map((el: any) => {
       if (!el.Commodity) {
-        return (err = errMsg);
+        return errMsg;
       }
       if (!el.Grade) {
-        return (err = errMsg);
+        return errMsg;
       }
       if (!el.Recovery || el.Recovery == 0) {
-        return (err = errMsg);
+        return errMsg;
       }
     });
     if (!obj.Vein_width) {
-      return (err = errMsg);
+      return errMsg;
     }
     if (!obj.Approx_tonnage) {
-      return (err = errMsg);
+      return errMsg;
     }
     if (!obj.Avg_depth) {
-      return (err = errMsg);
+      return errMsg;
     }
-    return err;
+    return null;
   };
 }
 
