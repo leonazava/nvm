@@ -33,6 +33,16 @@ function Calculator(props: any) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [err, setErr] = useState<null | string>(null);
 
+  useEffect(() => {
+    const obj = { ...state };
+    if (obj.Ten_meters === true) {
+      obj.Start_depth = 10;
+    } else {
+      obj.Start_depth = null;
+    }
+    setState(obj);
+  }, [state.Ten_meters]);
+
   function updateInputs(key: string) {
     const obj = { ...state };
     return (val: any) => {
