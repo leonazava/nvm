@@ -46,6 +46,7 @@ function Calculator(props: any) {
     const err = handleValidation({ ...state })();
     setErr(err);
     if (err) {
+      setIsSubmitting(false);
       return;
     }
     const formData = new FormData();
