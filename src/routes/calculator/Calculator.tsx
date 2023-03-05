@@ -65,11 +65,9 @@ function Calculator(props: any) {
     formData.append("ten_meters", state.Ten_meters);
     formData.append("start_depth", state.Start_depth);
     const res = await axios.post(
-      // "https://novamera.fruitfulsource.com/",
-      "http://localhost:8080",
+      "https://novamera.fruitfulsource.com/",
       formData
     );
-    // const res = await axios.post("http://localhost:8080/", formData);
     setIsSubmitting(false);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
   }
