@@ -21,6 +21,7 @@ function Calculator(props: any) {
     Approx_tonnage: "",
     Avg_depth: "",
     Sixty_deg: null,
+    Ten_meters: null,
     Start_depth: null,
   };
 
@@ -61,22 +62,16 @@ function Calculator(props: any) {
     formData.append("approx_tonnage", state.Approx_tonnage);
     formData.append("avg_depth", state.Avg_depth);
     formData.append("sixty_deg", state.Sixty_deg);
+    formData.append("ten_meters", state.Ten_meters);
     formData.append("start_depth", state.Start_depth);
     const res = await axios.post(
-      "https://novamera.fruitfulsource.com/",
-      // "http://localhost:8080",
+      // "https://novamera.fruitfulsource.com/",
+      "http://localhost:8080",
       formData
     );
     // const res = await axios.post("http://localhost:8080/", formData);
     setIsSubmitting(false);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
-  }
-
-  function renderStartDepthDisplayValue() {
-    if (state.Start_depth === null) return null;
-    if (state.Start_depth === false) return false;
-    if (state.Start_depth === true) return true;
-    if (typeof state.Start_depth === "string") return false;
   }
 
   return (
@@ -118,13 +113,19 @@ function Calculator(props: any) {
           )}
           <Yesno
             question="Is deposit within 10 meters of the surface?"
-            change={updateInputs("Start_depth")}
-            displayValue={renderStartDepthDisplayValue()}
+            change={updateInputs("Ten_meters")}
+            displayValue={state.Ten_meters}
           />
-          <StartingDepth
-            depth={state.Start_depth}
-            update={updateInputs("Start_depth")}
-          />
+          {state.Ten_meters === false && (
+            <div className="warningContainer">
+              <Freetext
+                label="If no, at what depth does it start? (meters)"
+                displayValue={state.Start_depth || ""}
+                placeholder="e.g. 15"
+                change={updateInputs("Start_depth")}
+              />
+            </div>
+          )}
         </div>
         <div className="actionButtons">
           <div className="errorContainer">
@@ -252,20 +253,14 @@ function AvgDepositDepth(props) {
 }
 
 function StartingDepth(props) {
-  function handleChange() {
-    return (val: any) => {
-      props.update(parseFloat(val));
-    };
-  }
-
-  if (props.depth === false || typeof props.depth === "number") {
+  if (props.ten_meters === false) {
     return (
       <div className="warningContainer">
         <Freetext
           label="If no, at what depth does it start? (meters)"
-          displayValue={props.depth || ""}
+          displayValue={props.displayValue || ""}
           placeholder="e.g. 15"
-          change={handleChange()}
+          change={props.update}
         />
       </div>
     );
@@ -294,6 +289,15 @@ function handleValidation(obj: any): () => string | null {
       return (err = errMsg);
     }
     if (!obj.Avg_depth) {
+      return (err = errMsg);
+    }
+    if (obj.Sixty_deg === null) {
+      return (err = errMsg);
+    }
+    if (obj.Ten_meters === null) {
+      return (err = errMsg);
+    }
+    if (obj.Ten_meters === false && !obj.Start_depth) {
       return (err = errMsg);
     }
     return err;
