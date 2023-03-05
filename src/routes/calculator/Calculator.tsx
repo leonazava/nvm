@@ -29,6 +29,7 @@ function Calculator(props: any) {
   }, []);
 
   const [state, setState] = useState(inputs);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [err, setErr] = useState<null | string>(null);
 
   function updateInputs(key: string) {
@@ -40,9 +41,12 @@ function Calculator(props: any) {
   }
 
   async function handleSubmit() {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const err = handleValidation({ ...state })();
     setErr(err);
     if (err) {
+      setIsSubmitting(false);
       return;
     }
     const formData = new FormData();
@@ -60,8 +64,11 @@ function Calculator(props: any) {
     formData.append("start_depth", state.Start_depth);
     const res = await axios.post(
       "https://novamera.fruitfulsource.com/",
+      // "http://localhost:8080",
       formData
     );
+    // const res = await axios.post("http://localhost:8080/", formData);
+    setIsSubmitting(false);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
   }
 
@@ -91,7 +98,7 @@ function Calculator(props: any) {
       </article>
       <div className="Calculator__form wrapper">
         <div className="Calculator__form container">
-          <h2>Find out how much surgical mining could add to your project</h2>
+          <h2>ESTIMATE YOUR PROJECT RETURN</h2>
           <Metals update={updateInputs("Metals")} />
           <VeinWidth update={updateInputs("Vein_width")} />
           <ApproximateTonnage update={updateInputs("Approx_tonnage")} />
