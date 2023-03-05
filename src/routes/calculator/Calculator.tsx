@@ -29,7 +29,6 @@ function Calculator(props: any) {
   }, []);
 
   const [state, setState] = useState(inputs);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [err, setErr] = useState<null | string>(null);
 
   function updateInputs(key: string) {
@@ -41,12 +40,9 @@ function Calculator(props: any) {
   }
 
   async function handleSubmit() {
-    if (isSubmitting) return;
-    setIsSubmitting(true);
     const err = handleValidation({ ...state })();
     setErr(err);
     if (err) {
-      setIsSubmitting(false);
       return;
     }
     const formData = new FormData();
@@ -66,8 +62,6 @@ function Calculator(props: any) {
       "https://novamera.fruitfulsource.com/",
       formData
     );
-    // const res = await axios.post("http://localhost:8080/", formData);
-    setIsSubmitting(false);
     props.setData({ inputs: { ...state }, outputs: { ...res.data } });
   }
 
