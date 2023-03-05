@@ -129,7 +129,9 @@ function Calculator(props: any) {
           <div className="errorContainer">
             <p>{err}</p>
           </div>
-          <button onClick={handleSubmit}>CALCULATE NOW</button>
+          <button onClick={handleSubmit}>
+            {isSubmitting ? "Loading..." : "CALCULATE NOW"}
+          </button>
         </div>
       </div>
 
